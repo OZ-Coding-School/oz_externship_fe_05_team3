@@ -7,7 +7,7 @@ import {
   ItemTitle,
 } from '../ui/item';
 import { ThumbsUp } from 'lucide-react';
-import { dayFormatter } from '@/utils/dateUtils';
+import { dayFormatter } from '@/utils/dateutils';
 import type { PostDTO } from '@/api/model/postDTO';
 import { useAuthStore } from '@/store';
 

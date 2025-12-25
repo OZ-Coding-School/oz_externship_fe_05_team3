@@ -9,7 +9,7 @@ export interface PostDTO {
   id: number;
   author: UserDTO;
   title: string;
-  category: string;
+  category_id: number;
   thumbnail_img_url: string;
   content_preview: string;
   comment_count: number;
@@ -32,27 +32,27 @@ export interface AuthDTO {
   logout: () => void;
 }
 
-export enum ComunitySearchFilter {
+export type CommunitySearch =
+  | {
+      page?: number;
+      search?: string;
+      search_filter?: CommunitySearchFilter;
+      category_id?: number;
+      sort?: CommunitySearchSort;
+    }
+  | undefined;
+
+export enum CommunitySearchFilter {
   AUTHOR = 'author',
   TITLE = 'title',
   CONTENT = 'content',
   TITLE_OR_CONTENT = 'title_or_content',
 }
 
-export enum ComunitySearchSort {
+export enum CommunitySearchSort {
   LATEST = 'lastest',
   OLDEST = 'oldest',
   MOST_VIEWS = 'most_views',
   MOST_LIKES = 'most_likes',
   MOST_COMMENTS = 'most_comments',
 }
-
-export type SearchComunity =
-  | {
-      page?: number;
-      search?: string;
-      search_filter?: ComunitySearchFilter;
-      category_id?: number;
-      sort?: ComunitySearchSort;
-    }
-  | undefined;
