@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Pencil } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ROUTES } from '@/routes';
 
 export function CreateButton() {
