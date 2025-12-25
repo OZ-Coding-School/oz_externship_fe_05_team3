@@ -4,6 +4,7 @@ export const ROUTES = {
   COMMUNITY_DETAIL: '/community/:id',
   COMMUNITY_CREATE: '/community/create',
   COMMUNITY_EDIT: '/community/edit/:id',
+  COMMUNITY_POSTS: '/community/posts',
   QUESTION: '/question',
   LOGIN: '/login',
   SIGNUP: '/signup',
