@@ -6,6 +6,7 @@ import { ArrayOption } from '@/components/CommunityPage/ArrayOption';
 import { postList } from '@/mocks/postList';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useMemo, useState, type KeyboardEvent } from 'react';
+
 import {
   Select,
   SelectContent,
@@ -21,45 +22,37 @@ import {
   InputGroupInput,
 } from '@/components/ui/input-group';
 import { SearchIcon } from 'lucide-react';
-import { ComunitySearchFilter, type SearchComunity } from '@/api/model/postDTO';
+import { useCommunityPosts } from '@/hooks/usecommunityposts';
+import { useCommunityQuery } from '@/hooks/usecommunityquery';
+import {
+  CommunitySearchSort,
+  CommunitySearchFilter,
+} from '@/api/model/postDTO';
 
 function CommunityPage() {
-  const posts = postList.results;
+  const { queryState } = useCommunityQuery();
 
-  const [searchParams] = useSearchParams();
-  const selectedCategory = searchParams.get('category') || '전체';
+  const postsQuery = useCommunityPosts({
+    page: queryState.page,
+    search: queryState.search,
+    search_filter: queryState.search_filter,
+    sort: queryState.sort,
+  });
+
+  const posts = postsQuery.data ?? [];
 
   const searchFilter = [
-    { value: ComunitySearchFilter.AUTHOR, label: '작성자' },
-    { value: ComunitySearchFilter.TITLE, label: '제목' },
-    { value: ComunitySearchFilter.CONTENT, label: '내용' },
-    { value: ComunitySearchFilter.TITLE_OR_CONTENT, label: '제목 또는 내용' },
+    { value: CommunitySearchFilter.AUTHOR, label: '작성자' },
+    { value: CommunitySearchFilter.TITLE, label: '제목' },
+    { value: CommunitySearchFilter.CONTENT, label: '내용' },
+    { value: CommunitySearchFilter.TITLE_OR_CONTENT, label: '제목 또는 내용' },
   ];
 
-  const filteredPosts = useMemo(() => {
-    if (selectedCategory === '전체') {
-      return posts;
-    }
-    return posts.filter((post) => post.category === selectedCategory);
-  }, [selectedCategory, posts]);
-
-  const [queryParams, setQueryParams] = useState<SearchComunity>({
-    page: 3,
-    search: 'a',
-  });
-  const [searchValue, setSearchValue] = useState('');
-
-  const handleChangeSearchFilter = (val: string) => {
-    setQueryParams((prev) => ({
-      ...prev,
-      search_filter: val as ComunitySearchFilter,
-    }));
+  const handleChangeSearchFilter = (filter: string) => {
+    console.log('searchfilter :', filter);
   };
-  const handleSearchOnEnter = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      setQueryParams((prev) => ({ ...prev, page: 1, search: searchValue }));
-      console.log('prev query params :', queryParams);
-    }
+  const handleChangeSearch = (search: string) => {
+    console.log('search :', search);
   };
 
   return (
@@ -76,9 +69,9 @@ function CommunityPage() {
               <SelectContent>
                 <SelectGroup className="">
                   <SelectLabel>검색 유형</SelectLabel>
-                  {searchFilter.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
+                  {searchFilter.map((filter) => (
+                    <SelectItem key={filter.value} value={filter.value}>
+                      {filter.label}
                     </SelectItem>
                   ))}
                 </SelectGroup>
@@ -86,10 +79,9 @@ function CommunityPage() {
             </Select>
             <InputGroup className="h-[48px] w-[472px] rounded-full">
               <InputGroupInput
-                onChange={(e) => setSearchValue(e.target.value)}
-                onKeyUp={handleSearchOnEnter}
                 className="text-[14px]"
                 placeholder="질문검색"
+                onChange={(event) => handleChangeSearch(event.target.value)}
               />
               <InputGroupAddon>
                 <SearchIcon />
@@ -113,7 +105,7 @@ function CommunityPage() {
       </header>
 
       <main className="mb-10 flex flex-col gap-4">
-        {filteredPosts.map((post) => (
+        {posts?.results?.map((post) => (
           <Link to={`/community/${post.id}`} key={post.id}>
             <ListCard post={post} category={post.category} />
           </Link>
