@@ -10,6 +10,7 @@ export interface PostDTO {
   author: UserDTO;
   title: string;
   category_id: number;
+  category: string;
   thumbnail_img_url: string;
   content_preview: string;
   comment_count: number;
@@ -50,7 +51,7 @@ export enum CommunitySearchFilter {
 }
 
 export enum CommunitySearchSort {
-  LATEST = 'lastest',
+  LATEST = 'latest',
   OLDEST = 'oldest',
   MOST_VIEWS = 'most_views',
   MOST_LIKES = 'most_likes',
