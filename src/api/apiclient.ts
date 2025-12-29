@@ -7,6 +7,7 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
 // 공통 axios 인스턴스
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
+
   withCredentials: true,
 });
 
