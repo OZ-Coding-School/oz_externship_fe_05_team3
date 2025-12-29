@@ -1,27 +1,10 @@
-import {
-  CommunitySearchSort,
-  type CommunitySearchFilter,
-} from '@/api/model/postDTO';
-import { useCallback, useMemo } from 'react';
+import { SortOption, SearchFilter } from '@/types-interface/index';
+import { useCallback } from 'react';
 import { useSearchParams } from 'react-router';
-
-export function useCommunityQuery() {
+import { queryState as queryStateType } from '@types-interface/CommunityTypes';
+const useCommunityQuery = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const queryState = useMemo(
-    () => ({
-      page: Number(searchParams.get('page')) || 1,
-      search: searchParams.get('search') || '',
-      search_filter:
-        (searchParams.get('search_filter') as CommunitySearchFilter) ||
-        undefined,
-      category_id: Number(searchParams.get('category_id')) || undefined,
-      sort:
-        (searchParams.get('sort') as CommunitySearchSort) ||
-        CommunitySearchSort.LATEST, // 기본값: 최신순
-    }),
-    [searchParams]
-  ); // 현재 URL 상태에 따라 쿼리 상태 업데이트
+  const queryState = queryStateType(searchParams);
 
   // URL 업데이트 헬퍼 ( 불필요한 파라미터 제거 )
   const updateQuery = useCallback(
@@ -53,7 +36,7 @@ export function useCommunityQuery() {
     [updateQuery]
   );
   const updateSearch = useCallback(
-    (search: string, search_filter?: CommunitySearchFilter) => {
+    (search: string, search_filter?: SearchFilter) => {
       updateQuery({
         search,
         search_filter: search_filter || queryState.search_filter,
@@ -63,8 +46,10 @@ export function useCommunityQuery() {
     [updateQuery, queryState.search_filter]
   );
 
+  //
+
   const updateSearchFilter = useCallback(
-    (search_filter: CommunitySearchFilter) => {
+    (search_filter: SearchFilter) => {
       updateQuery({
         search_filter,
       });
@@ -73,6 +58,7 @@ export function useCommunityQuery() {
   );
 
   const updateCategory = useCallback(
+    //
     (category_id: number) => {
       updateQuery({
         category_id,
@@ -83,7 +69,7 @@ export function useCommunityQuery() {
   );
 
   const updateSort = useCallback(
-    (sort: CommunitySearchSort) => {
+    (sort: SortOption) => {
       updateQuery({
         sort,
         page: 1, // 정렬 변경 시 페이지 초기화
@@ -105,4 +91,6 @@ export function useCommunityQuery() {
     updateSort,
     resetFilters,
   };
-}
+};
+
+export default useCommunityQuery;

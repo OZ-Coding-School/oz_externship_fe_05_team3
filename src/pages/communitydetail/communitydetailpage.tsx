@@ -2,8 +2,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  Button,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  InputGroupCustom,
+} from '@/lib/index';
 import { ThumbsUp } from 'lucide-react';
 
 import { CommentForm } from '@/components/CommunityDetailPage/CommentForm/CommentForm';
@@ -11,7 +16,7 @@ import { CommentList } from '@/components/CommunityDetailPage/CommentList/Commen
 import { DeleteDialog } from '@/components/CommunityDetailPage/CommentList/DeleteDialog';
 
 import { useComments } from '@/hooks/usecomments';
-import { formatDate } from '@/lib/formatdate';
+import { formatDate } from '@/utils/index';
 import linkIcon from '@/assets/icon/feathericons/link.png';
 
 type CommunityDetailVariant = 'guest' | 'member' | 'author';
