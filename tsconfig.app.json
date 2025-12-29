@@ -24,7 +24,17 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@lib/*": ["src/lib/*"],
+      "@utils/*": ["src/utils/*"],
+      "@types-interface/*": ["src/types-interface/*"],
+      "@api/*": ["src/api/*"],
+      "@pages/*": ["src/pages/*"],
+      "@store/*": ["src/store/*"]
+      // "@domains/*": ["src/domains/*"],
+      // "@shared/*": ["src/shared/*"],
     }
   },
   "include": ["src"]
