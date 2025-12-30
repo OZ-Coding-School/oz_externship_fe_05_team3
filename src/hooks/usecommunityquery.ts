@@ -1,7 +1,8 @@
-import { SortOption, SearchFilter } from '@/types-interface/index';
+import { SortOption, SearchFilterEnum } from '@/types/index';
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router';
-import { queryState as queryStateType } from '@types-interface/CommunityTypes';
+import { queryStateType } from '@/utils/index';
+
 const useCommunityQuery = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryState = queryStateType(searchParams);
@@ -23,7 +24,7 @@ const useCommunityQuery = () => {
           return newParams;
         },
         { replace: false }
-      ); // 히스토리 스택에 추가 ( false: 추가, true: 대체 )
+      );
     },
     [setSearchParams]
   );
@@ -35,21 +36,23 @@ const useCommunityQuery = () => {
     },
     [updateQuery]
   );
+
   const updateSearch = useCallback(
-    (search: string, search_filter?: SearchFilter) => {
+    (search: string, search_filter?: SearchFilterEnum) => {
+      const isSearchValid = !!search.trim();
       updateQuery({
-        search,
-        search_filter: search_filter || queryState.search_filter,
-        page: 1, // 검색어 변경 시 페이지 초기화
+        search: isSearchValid ? search : '',
+        search_filter: isSearchValid
+          ? search_filter || queryState.search_filter
+          : undefined,
+        page: 1,
       });
     },
     [updateQuery, queryState.search_filter]
   );
 
-  //
-
   const updateSearchFilter = useCallback(
-    (search_filter: SearchFilter) => {
+    (search_filter?: SearchFilterEnum) => {
       updateQuery({
         search_filter,
       });
@@ -58,11 +61,10 @@ const useCommunityQuery = () => {
   );
 
   const updateCategory = useCallback(
-    //
     (category_id: number) => {
       updateQuery({
         category_id,
-        page: 1, // 카테고리 변경 시 페이지 초기화
+        page: 1,
       });
     },
     [updateQuery]
@@ -72,7 +74,7 @@ const useCommunityQuery = () => {
     (sort: SortOption) => {
       updateQuery({
         sort,
-        page: 1, // 정렬 변경 시 페이지 초기화
+        page: 1,
       });
     },
     [updateQuery]
