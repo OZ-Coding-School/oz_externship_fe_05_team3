@@ -103,3 +103,18 @@ export {
 export { default as Separator } from '@/lib/ui/separator';
 export { default as Toaster } from '@/lib/ui/sonner';
 export { default as Textarea } from '@/lib/ui/textarea';
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
+} from '@/lib/ui/card';
+export {
+  Carousel,
+  CarouselContent,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/lib/ui/carousel';
