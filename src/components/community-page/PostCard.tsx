@@ -51,7 +51,7 @@ const PostCard = ({ postcard }: PostCardProps) => {
                   </CardAction>
                   <div className="flex items-center gap-2">
                     <img
-                      src={author.profile_img_url || '/src/assets/user.png'}
+                      src={author.profile_image_url || '/src/assets/user.png'}
                       alt="프로필"
                       className="bg-oz-gray-light h-[24px] w-[24px] rounded-full object-cover"
                     />

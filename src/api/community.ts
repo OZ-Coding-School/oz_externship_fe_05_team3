@@ -3,6 +3,7 @@ import { ROUTES } from '@/routes';
 import type { PostListResponse, PostQueryParams } from './communityTypes';
 
 export const communityApi = {
+  // 게시글 목록 조회
   getPosts: async (params: PostQueryParams = {}): Promise<PostListResponse> => {
     const response = await apiClient.get<PostListResponse>(
       ROUTES.COMMUNITY_POSTS,

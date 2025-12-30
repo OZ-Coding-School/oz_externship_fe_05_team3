@@ -37,7 +37,7 @@ const NavigationBar = () => {
               {isAuthenticated ? (
                 <Link to="/profile">
                   <img
-                    src={user?.profile_img_url ?? '/src/assets/user.png'}
+                    src={user?.profile_image_url ?? '/src/assets/user.png'}
                     alt="user-icon"
                     className="size-[40px] rounded-full"
                   />

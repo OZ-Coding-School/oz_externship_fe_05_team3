@@ -10,7 +10,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 1,
         nickname: 'testuser1',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user1.png',
       },
       title: '테스트 게시글 1번',
@@ -29,7 +29,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 2,
         nickname: 'testuser2',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user2.png',
       },
       title: '프론트엔드 질문 있습니다',
@@ -48,7 +48,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 3,
         nickname: 'backend_dev',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user3.png',
       },
       title: 'FastAPI CORS 설정 방법',
@@ -67,7 +67,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 4,
         nickname: 'design_guru',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user4.png',
       },
       title: 'UI/UX 개선 아이디어 공유',
@@ -86,7 +86,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 5,
         nickname: 'devops_master',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user5.png',
       },
       title: '배포 자동화 후기',
@@ -105,7 +105,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 6,
         nickname: 'student_dev',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user6.png',
       },
       title: '코딩테스트 준비 방법',
@@ -124,7 +124,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 7,
         nickname: 'react_pro',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user7.png',
       },
       title: 'React 성능 최적화 팁',
@@ -143,7 +143,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 8,
         nickname: 'typescript_fan',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user8.png',
       },
       title: 'TypeScript 타입 설계 팁',
@@ -162,7 +162,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 9,
         nickname: 'api_designer',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user9.png',
       },
       title: 'REST API 설계 원칙',
@@ -181,7 +181,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 10,
         nickname: 'junior_dev',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user10.png',
       },
       title: '첫 프로젝트 회고',
@@ -200,7 +200,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 11,
         nickname: 'job_seeker',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user11.png',
       },
       title: '주니어 개발자 채용 정보',
@@ -219,7 +219,7 @@ const communityPosts: PostListResponse = {
       author: {
         id: 12,
         nickname: 'project_manager',
-        profile_img_url: '',
+        profile_image_url: '',
         //'https://example.com/uploads/images/users/profiles/user12.png',
       },
       title: '사이드 프로젝트 팀원 모집',
