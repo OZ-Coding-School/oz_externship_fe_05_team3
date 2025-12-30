@@ -1,4 +1,4 @@
-import type { Auth, Author } from '@/types-interface/index';
+import type { Auth, Author } from '@/types/index';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
