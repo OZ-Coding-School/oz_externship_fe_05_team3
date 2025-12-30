@@ -3,7 +3,7 @@ export { default as CreateButton } from '@/components/community-page/CreateButto
 export { default as DeleteDialog } from '@/components/community-page/DeleteDialog';
 export { default as TextareaInputGroup } from '@/components/community-page/TextareaInputGroup';
 export { default as NavigationBar } from '@/components/community-page/NavigationBar';
-export { default as CategoryNavigationMenu } from '@/components/community-page/CategoryNavigationMenu';
+export { default as CategoryMenu } from '@/components/community-page/CategoryMenu';
 export { default as CommunityPagination } from '@/components/community-page/Pagination';
 export { default as PostCard } from '@/components/community-page/PostCard';
 export { default as SearchFilter } from '@/components/community-page/SearchFilter';

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { communityApi, type PostQueryParams } from '@/types-interface/index';
+import { type PostQueryParams } from '@/types/index';
+import { communityApi } from '@/api/index';
 
 const useCommunityPosts = (params: PostQueryParams) => {
   return useQuery({

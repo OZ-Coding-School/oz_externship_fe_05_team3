@@ -1,8 +1,4 @@
-import {
-  CategoryName,
-  CategoryId,
-  type PostListResponse,
-} from '@/types-interface/index';
+import { CategoryName, CategoryId, type PostListResponse } from '@/types/index';
 
 const communityPosts: PostListResponse = {
   count: 100,

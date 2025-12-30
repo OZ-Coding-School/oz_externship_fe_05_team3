@@ -1,10 +1,10 @@
 import {
-  SearchFilter,
+  SearchFilterEnum,
   type Post,
   CategoryName,
   CategoryId,
   SortOption,
-} from '@/types-interface/CommunityTypes';
+} from '@/types/index';
 
 // 카테고리 이름 -> ID 매핑
 export function getCategoryIdByName(categoryName: CategoryName): CategoryId {
@@ -33,9 +33,9 @@ export function filterByCategory(posts: Post[], categoryId?: number): Post[] {
 export function filterBySearch(
   posts: Post[],
   search: string,
-  searchFilter?: SearchFilter
+  searchFilter?: SearchFilterEnum
 ): Post[] {
-  if (!search || !searchFilter) {
+  if (!search) {
     return posts;
   }
 
@@ -44,15 +44,18 @@ export function filterBySearch(
     return posts;
   }
 
+  const effectiveSearchFilter =
+    searchFilter || SearchFilterEnum.TITLE_OR_CONTENT;
+
   return posts.filter((post) => {
-    switch (searchFilter) {
-      case SearchFilter.AUTHOR:
+    switch (effectiveSearchFilter) {
+      case SearchFilterEnum.AUTHOR:
         return post.author.nickname.toLowerCase().includes(searchLower);
-      case SearchFilter.TITLE:
+      case SearchFilterEnum.TITLE:
         return post.title.toLowerCase().includes(searchLower);
-      case SearchFilter.CONTENT:
+      case SearchFilterEnum.CONTENT:
         return post.content_preview.toLowerCase().includes(searchLower);
-      case SearchFilter.TITLE_OR_CONTENT:
+      case SearchFilterEnum.TITLE_OR_CONTENT:
         return (
           post.title.toLowerCase().includes(searchLower) ||
           post.content_preview.toLowerCase().includes(searchLower)
@@ -116,7 +119,7 @@ export function processPosts(
   params: {
     categoryId?: number;
     search?: string;
-    searchFilter?: SearchFilter;
+    searchFilter?: SearchFilterEnum;
     sort?: SortOption;
     page?: number;
     pageSize?: number;
@@ -140,3 +143,14 @@ export function processPosts(
   // 4. 페이지네이션
   return paginatePosts(processed, params.page || 1, params.pageSize);
 }
+
+export const queryStateType = (searchParams: URLSearchParams) => {
+  return {
+    page: Number(searchParams.get('page')) || 1,
+    search: searchParams.get('search') || '',
+    search_filter:
+      (searchParams.get('search_filter') as SearchFilterEnum) || undefined,
+    category_id: Number(searchParams.get('category_id')) || undefined, // 안전하게 파싱하고 검증까지
+    sort: (searchParams.get('sort') as SortOption) || SortOption.LATEST, // 기본값: 최신순
+  };
+};

@@ -4,7 +4,7 @@ import type {
   CommentListResponse,
   CreateCommentRequest,
   UpdateCommentRequest,
-} from '@/types-interface/api';
+} from '@/api/api';
 
 const commentService = {
   getComments(postId: number, page = 1, pageSize = 100) {
