@@ -1,14 +1,7 @@
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/lib/index';
 import { useCommunityQuery } from '@/hooks/index';
-import { SortOption } from '@/types-interface/index';
+import { SortOption } from '@/types/index';
+import { NativeSelect, NativeSelectOption } from '@/lib/ui/native-select';
+import { useEffect, useState } from 'react';
 
 const SORT_OPTIONS = [
   { value: SortOption.MOST_VIEWS, label: '조회순' },
@@ -20,27 +13,39 @@ const SORT_OPTIONS = [
 
 const Sort = () => {
   const { queryState, updateSort } = useCommunityQuery();
+  const [sortState, setSortState] = useState<SortOption>(queryState.sort);
 
-  const handleChangeSort = (sortType: SortOption) => {
-    updateSort(sortType as SortOption);
+  // URL 변경 시 로컬 상태 동기화
+  useEffect(() => {
+    setSortState(queryState.sort);
+  }, [queryState.sort]);
+
+  const handleChangeSort = (sortType: string) => {
+    if (sortType === '') {
+      return;
+    }
+
+    const sortValue = sortType as SortOption;
+    setSortState(sortValue);
+    updateSort(sortValue);
   };
 
   return (
-    <Select value={queryState.sort} onValueChange={handleChangeSort}>
-      <SelectTrigger className="w-[120px] text-[16px]">
-        <SelectValue placeholder="정렬 기준" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>정렬 기준</SelectLabel>
-          {SORT_OPTIONS.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+    <div className="flex w-[120px] items-center justify-center">
+      <NativeSelect
+        value={sortState}
+        onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+          handleChangeSort(event.target.value)
+        }
+      >
+        <NativeSelectOption value="">정렬 기준</NativeSelectOption>
+        {SORT_OPTIONS.map((option) => (
+          <NativeSelectOption key={option.value} value={option.value}>
+            {option.label}
+          </NativeSelectOption>
+        ))}
+      </NativeSelect>
+    </div>
   );
 };
 
