@@ -1,3 +1,4 @@
+import { useMemo, useCallback } from 'react';
 import {
   Pagination,
   PaginationContent,
@@ -7,34 +8,120 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/lib/index';
+import { useCommunityQuery, useCommunityPageData } from '@/hooks/index';
+
+const PAGE_SIZE = 10;
+const MAX_VISIBLE_PAGES = 5;
 
 const CommunityPagination = () => {
+  const { queryState, updatePage } = useCommunityQuery();
+  const { postsQuery } = useCommunityPageData();
+
+  const currentPage = queryState.page;
+  const totalCount = postsQuery.data?.count ?? 0;
+  const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+
+  // 표시할 페이지 번호 범위 계산 (useMemo로 최적화)
+  const pageNumbers = useMemo(() => {
+    const pages: (number | 'ellipsis')[] = [];
+
+    if (totalPages <= MAX_VISIBLE_PAGES) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    const halfVisible = Math.floor(MAX_VISIBLE_PAGES / 2);
+    let startPage = Math.max(1, currentPage - halfVisible);
+    let endPage = Math.min(totalPages, currentPage + halfVisible);
+
+    if (currentPage <= halfVisible) {
+      endPage = MAX_VISIBLE_PAGES;
+      startPage = 1;
+    } else if (currentPage > totalPages - halfVisible) {
+      startPage = totalPages - MAX_VISIBLE_PAGES + 1;
+      endPage = totalPages;
+    }
+
+    if (startPage > 1) {
+      pages.push(1);
+      if (startPage > 2) pages.push('ellipsis');
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) pages.push('ellipsis');
+      pages.push(totalPages);
+    }
+    return pages;
+  }, [currentPage, totalPages]);
+
+  const handlePageChange = useCallback(
+    (page: number) => {
+      if (page >= 1 && page <= totalPages) {
+        updatePage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    },
+    [totalPages, updatePage]
+  );
+
+  const hasPrevious = currentPage > 1;
+  const hasNext = currentPage < totalPages;
+
+  // 페이지가 1개 이하면 페이지네이션을 표시하지 않음
+  if (totalPages <= 1) {
+    return null;
+  }
+
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href="#" size="sm" />
+          <PaginationPrevious
+            onClick={() => hasPrevious && handlePageChange(currentPage - 1)}
+            size="sm"
+            className={
+              !hasPrevious ? 'pointer-events-none opacity-50' : 'cursor-pointer'
+            }
+            aria-disabled={!hasPrevious}
+          />
         </PaginationItem>
+
+        {pageNumbers.map((page, index) => {
+          if (page === 'ellipsis') {
+            return (
+              <PaginationItem key={`ellipsis-${index}`}>
+                <PaginationEllipsis />
+              </PaginationItem>
+            );
+          }
+
+          return (
+            <PaginationItem key={page}>
+              <PaginationLink
+                onClick={() => handlePageChange(page)}
+                isActive={currentPage === page}
+                size="sm"
+                aria-current={currentPage === page ? 'page' : undefined}
+                className="cursor-pointer"
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
+
         <PaginationItem>
-          <PaginationLink href="#" size="sm">
-            1
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive size="sm">
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" size="sm">
-            3
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" size="sm" />
+          <PaginationNext
+            onClick={() => hasNext && handlePageChange(currentPage + 1)}
+            size="sm"
+            className={
+              !hasNext ? 'pointer-events-none opacity-50' : 'cursor-pointer'
+            }
+            aria-disabled={!hasNext}
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>
