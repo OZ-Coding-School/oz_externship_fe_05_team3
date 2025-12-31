@@ -15,4 +15,4 @@ export {
   CategoryId,
   SortOption,
   CategoryName,
-} from '@/api/communityTypes';
+} from '@/api/communityPageTypes';

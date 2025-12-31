@@ -6,6 +6,7 @@ export { default as NavigationBar } from '@/components/community-page/Navigation
 export { default as CategoryMenu } from '@/components/community-page/CategoryMenu';
 export { default as CommunityPagination } from '@/components/community-page/Pagination';
 export { default as PostCard } from '@/components/community-page/PostCard';
+export { default as PostCardEmpty } from '@/components/community-page/PostCardEmpty';
 export { default as SearchFilter } from '@/components/community-page/SearchFilter';
 export { default as SearchInput } from '@/components/community-page/SearchInput';
 export { default as Sort } from '@/components/community-page/Sort';

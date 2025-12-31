@@ -97,9 +97,7 @@ export {
   SelectLabel,
   SelectItem,
   SelectSeparator,
-  SelectScrollUpButton,
-  SelectScrollDownButton,
-} from '@/lib/ui/select';
+} from '@/lib/ui/gemini_select';
 export { default as Separator } from '@/lib/ui/separator';
 export { default as Toaster } from '@/lib/ui/sonner';
 export { default as Textarea } from '@/lib/ui/textarea';
@@ -117,4 +115,5 @@ export {
   CarouselContent,
   CarouselNext,
   CarouselPrevious,
+  CarouselItem,
 } from '@/lib/ui/carousel';
