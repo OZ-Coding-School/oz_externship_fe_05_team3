@@ -1,8 +1,5 @@
 // src/mocks/handlers.ts
 import { http, HttpResponse } from 'msw';
-import communityPosts from '@/mocks/CommunityPosts';
-import { processPosts } from '@/utils/index';
-import type { SearchFilterEnum, SortOption } from '@/types/index';
 
 export const handlers = [
   // ✅ 여기에는 기존에 쓰던 다른 목 핸들러들이 올 수 있음.
@@ -15,6 +12,7 @@ export const handlers = [
   // 댓글 관련 핸들러 (현재 비활성화)
   // ============================
   /*
+
 
 
   // 댓글 수정
