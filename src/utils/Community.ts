@@ -150,7 +150,8 @@ export const queryStateType = (searchParams: URLSearchParams) => {
     search: searchParams.get('search') || '',
     search_filter:
       (searchParams.get('search_filter') as SearchFilterEnum) || undefined,
-    category_id: Number(searchParams.get('category_id')) || undefined, // 안전하게 파싱하고 검증까지
+    category_id:
+      (searchParams.get('category_id') as CategoryId) || ('' as CategoryId),
     sort: (searchParams.get('sort') as SortOption) || SortOption.LATEST, // 기본값: 최신순
   };
 };
