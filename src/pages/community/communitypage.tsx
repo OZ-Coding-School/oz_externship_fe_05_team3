@@ -1,13 +1,11 @@
 import { ListCard } from '@/components/CommunityPage/ListCard';
 import { NavigationMenu } from '@/components/CommunityPage/NavigationMenu';
-import { SearchOption } from '@/components/CommunityPage/SearchOption';
-import { SearchInput } from '@/components/CommunityPage/SearchInput';
 import { CreateButton } from '@/components/CommunityPage/CreateButton';
 import { CommunityPagination } from '@/components/CommunityPage/Pagination';
 import { ArrayOption } from '@/components/CommunityPage/ArrayOption';
 import { postList } from '@/mocks/postList';
 import { Link, useSearchParams } from 'react-router-dom';
-import { useMemo, useState, KeyboardEvent } from 'react';
+import { useMemo, useState, type KeyboardEvent } from 'react';
 import {
   Select,
   SelectContent,

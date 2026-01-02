@@ -51,6 +51,8 @@ export function CommentItem({
         {isEditing ? (
           <div className="space-y-2">
             <textarea
+              title="댓글 수정"
+              placeholder="댓글을 수정해주세요."
               value={editingContent}
               onChange={(e) => onEditingContentChange(e.target.value)}
               className="min-h-[80px] w-full resize-none rounded-[8px] border border-[#E4E4E4] px-[12px] py-[8px] text-[13px] focus:border-[#6201E0] focus:outline-none"
