@@ -30,3 +30,16 @@ export interface authorDTO {
   nickname: string;
   profile_image_url: string;
 }
+
+export interface CreateCommunityRequestDTO {
+  title: string;
+  content: string;
+  category: number;
+}
+
+export interface CreateCommunityResponseDTO {
+  id: number;
+  title: string;
+  content: string;
+  category: number;
+}

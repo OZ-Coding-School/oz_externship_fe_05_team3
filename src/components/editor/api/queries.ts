@@ -20,3 +20,9 @@ export const communityQueries = {
       enabled: Boolean(params.id) && params.enabled !== false,
     }),
 };
+
+export const communityMutations = {
+  postCommunityCreate: {
+    mutationFn: communityService.postCommunityPost,
+  },
+};

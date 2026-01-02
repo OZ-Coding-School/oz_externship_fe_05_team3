@@ -1,4 +1,7 @@
-import { communityQueries } from '@/components/editor/api/queries';
+import {
+  communityMutations,
+  communityQueries,
+} from '@/components/editor/api/queries';
 import EditorHeader from '@/components/editor/ui/EditorHeader';
 import TipTap from '@/components/editor/ui/TipTap';
 import ToolBar from '@/components/editor/ui/ToolBarBtn';
@@ -13,7 +16,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useTextEditor } from '@/hooks/tiptap';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
@@ -27,7 +30,7 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
   const [title, setTitle] = useState('');
   const [categoryId, setCategoryId] = useState<number | null>(null);
   const [content, setContent] = useState('');
-  console.log(content);
+
   // 카테고리 목록 조회
   const { data: categories } = useQuery(communityQueries.getCategories());
   const categoriesList = categories?.results ?? [];
@@ -42,6 +45,18 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
   const { data: postDetail } = useQuery(
     communityQueries.getCommunityDetail({ id: Number(id), enabled: isEdit })
   );
+
+  // 게시글 생성
+  const { mutate: createPost, isPending } = useMutation(
+    communityMutations.postCommunityCreate
+  );
+  const handleSubmit = () => {
+    createPost({
+      title,
+      content,
+      category: categoryId!,
+    });
+  };
 
   useEffect(() => {
     if (!postDetail || !editor) return;
@@ -89,7 +104,9 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
           <ToolBar editor={editor} />
           <TipTap editor={editor} />
         </div>
-        <Button className="ml-auto">{isEdit ? '수정하기' : '등록하기'}</Button>
+        <Button onClick={handleSubmit} className="ml-auto">
+          {isEdit ? '수정하기' : '등록하기'}
+        </Button>
       </div>
     </div>
   );
