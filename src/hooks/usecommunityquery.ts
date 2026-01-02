@@ -1,4 +1,4 @@
-import { SortOption, SearchFilterEnum } from '@/types/index';
+import { SortOption, SearchFilterEnum, CategoryId } from '@/types/index';
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router';
 import { queryStateType } from '@/utils/index';
@@ -61,7 +61,7 @@ const useCommunityQuery = () => {
   );
 
   const updateCategory = useCallback(
-    (category_id: number) => {
+    (category_id: CategoryId) => {
       updateQuery({
         category_id,
         page: 1,

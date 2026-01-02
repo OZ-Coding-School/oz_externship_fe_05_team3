@@ -89,6 +89,11 @@ export {
   PaginationEllipsis,
 } from '@/lib/ui/pagination';
 export {
+  NativeSelect,
+  NativeSelectOption,
+  NativeSelectOptGroup,
+} from '@/lib/ui/native-select';
+export {
   Select,
   SelectGroup,
   SelectValue,
@@ -97,7 +102,7 @@ export {
   SelectLabel,
   SelectItem,
   SelectSeparator,
-} from '@/lib/ui/gemini_select';
+} from '@/lib/ui/select';
 export { default as Separator } from '@/lib/ui/separator';
 export { default as Toaster } from '@/lib/ui/sonner';
 export { default as Textarea } from '@/lib/ui/textarea';

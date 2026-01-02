@@ -12,7 +12,7 @@ export {
   type Author,
   type PostQueryParams,
   SearchFilterEnum,
-  CategoryId,
+  ECategoryId as CategoryId,
   SortOption,
   CategoryName,
-} from '@/api/communityPageTypes';
+} from '@/types/communityPageTypes';

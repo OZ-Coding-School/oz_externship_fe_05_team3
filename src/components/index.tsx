@@ -1,14 +1,12 @@
 /* community-page */
-export { default as CreateButton } from '@/components/community-page/CreateButton';
-export { default as DeleteDialog } from '@/components/community-page/DeleteDialog';
-export { default as TextareaInputGroup } from '@/components/community-page/TextareaInputGroup';
-export { default as NavigationBar } from '@/components/community-page/NavigationBar';
-export { default as CategoryMenu } from '@/components/community-page/CategoryMenu';
-export { default as CommunityPagination } from '@/components/community-page/Pagination';
-export { default as PostCard } from '@/components/community-page/PostCard';
-export { default as PostCardEmpty } from '@/components/community-page/PostCardEmpty';
-export { default as SearchFilter } from '@/components/community-page/SearchFilter';
-export { default as SearchInput } from '@/components/community-page/SearchInput';
-export { default as Sort } from '@/components/community-page/Sort';
+export { default as CreateButton } from '@/components/community-page/ui/CreateButton';
+export { default as DeleteDialog } from './DeleteDialog';
+export { default as TextareaInputGroup } from './TextareaInputGroup';
+export { default as NavigationBar } from './NavigationBar';
+export { default as CategoryMenuSection } from '@/components/community-page/CategoryMenuSection';
+export { default as CommunityPagination } from '@/components/community-page/ui/Pagination';
+export { default as PostCardSection } from '@/components/community-page/PostCardSection';
+export { default as SearchSection } from '@/components/community-page/SearchSection';
+export { default as Sort } from '@/components/community-page/ui/Sort';
 /* community-detail */
 /* community-create */
