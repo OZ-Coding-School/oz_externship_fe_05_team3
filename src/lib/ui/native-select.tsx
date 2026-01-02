@@ -1,4 +1,4 @@
-// import * as React from 'react';
+import * as React from 'react';
 import { ChevronDownIcon } from 'lucide-react';
 
 import { cn } from '@/lib/index';
@@ -17,7 +17,7 @@ function NativeSelect({
         data-slot="native-select"
         data-size={size}
         className={cn(
-          'border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 h-9 w-full min-w-0 appearance-none rounded-md border-none bg-transparent px-3 py-2 pr-9 text-sm shadow-none transition-[color] outline-none disabled:pointer-events-none disabled:cursor-not-allowed data-[size=sm]:h-8 data-[size=sm]:py-1',
+          'border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 h-9 w-full min-w-0 appearance-none rounded-md border-none bg-transparent px-3 py-2 pr-9 text-[16px] shadow-none transition-[color] outline-none disabled:pointer-events-none disabled:cursor-not-allowed data-[size=sm]:h-8 data-[size=sm]:py-1',
           'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-none shadow-none',
           'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
           className
