@@ -1,4 +1,4 @@
-import { SortOption, SearchFilterEnum, CategoryId } from '@/types/index';
+import { SortOption, SearchFilterEnum, type CategoryId } from '@/types/index';
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router';
 import { queryStateType } from '@/utils/index';

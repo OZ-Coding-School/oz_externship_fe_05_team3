@@ -1,9 +1,7 @@
 import apiClient from './apiclient';
+
 import { ROUTES } from '@/routes';
-import type {
-  PostListResponse,
-  PostQueryParams,
-} from '../types/communityPageTypes';
+import type { PostListResponse, PostQueryParams } from './types';
 
 // 빈 값 제거 헬퍼 함수
 const cleanParams = (params: PostQueryParams) => {
@@ -29,5 +27,3 @@ const communityPostsApi = {
     return response.data;
   },
 };
-
-export default communityPostsApi;

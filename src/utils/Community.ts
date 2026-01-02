@@ -2,21 +2,22 @@ import {
   SearchFilterEnum,
   type Post,
   CategoryName,
-  CategoryId,
+  ECategoryId,
+  type CategoryId,
   SortOption,
 } from '@/types/index';
 
 // 카테고리 이름 -> ID 매핑
 export function getCategoryIdByName(categoryName: CategoryName): CategoryId {
   const categoryIdMap: Record<CategoryName, CategoryId> = {
-    [CategoryName.ALL_BOARD]: CategoryId.ALL_BOARD,
-    [CategoryName.NOTICE_BOARD]: CategoryId.NOTICE_BOARD,
-    [CategoryName.FREE_BOARD]: CategoryId.FREE_BOARD,
-    [CategoryName.DAILY_SHARE]: CategoryId.DAILY_SHARE,
+    [CategoryName.ALL_BOARD]: ECategoryId.ALL_BOARD,
+    [CategoryName.NOTICE_BOARD]: ECategoryId.NOTICE_BOARD,
+    [CategoryName.FREE_BOARD]: ECategoryId.FREE_BOARD,
+    [CategoryName.DAILY_SHARE]: ECategoryId.DAILY_SHARE,
     [CategoryName.DEVELOPMENT_KNOWLEDGE_SHARE]:
-      CategoryId.DEVELOPMENT_KNOWLEDGE_SHARE,
-    [CategoryName.JOB_INFO_SHARE]: CategoryId.JOB_INFO_SHARE,
-    [CategoryName.PROJECT_HIRING_SHARE]: CategoryId.PROJECT_HIRING_SHARE,
+      ECategoryId.DEVELOPMENT_KNOWLEDGE_SHARE,
+    [CategoryName.JOB_INFO_SHARE]: ECategoryId.JOB_INFO_SHARE,
+    [CategoryName.PROJECT_HIRING_SHARE]: ECategoryId.PROJECT_HIRING_SHARE,
   };
   return categoryIdMap[categoryName];
 }

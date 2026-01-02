@@ -5,6 +5,7 @@ export interface PostListResponse {
   previous: string | null;
   results: Post[];
 }
+
 // 게시글 정보
 export interface Post {
   id: number;
@@ -20,12 +21,14 @@ export interface Post {
   category: CategoryName;
   category_id: ECategoryId;
 }
+
 // 작성자 정보
 export interface Author {
   id: number;
   nickname: string;
   profile_image_url: string;
 }
+
 // 게시글 조회 조건
 export type PostQueryParams =
   | {
@@ -37,6 +40,7 @@ export type PostQueryParams =
       sort?: SortOption;
     }
   | undefined;
+
 // 검색 필터 조건
 export enum SearchFilterEnum {
   AUTHOR = 'author',
@@ -44,6 +48,7 @@ export enum SearchFilterEnum {
   CONTENT = 'content',
   TITLE_OR_CONTENT = 'title_or_content',
 }
+
 // 카테고리 ID
 export enum ECategoryId {
   ALL_BOARD = '',
@@ -54,6 +59,7 @@ export enum ECategoryId {
   JOB_INFO_SHARE = 5,
   PROJECT_HIRING_SHARE = 6,
 }
+
 export type CategoryId = ECategoryId | undefined;
 
 // 정렬 조건
@@ -64,6 +70,7 @@ export enum SortOption {
   LATEST = 'latest',
   OLDEST = 'oldest',
 }
+
 // 카테고리 이름
 export enum CategoryName {
   ALL_BOARD = '전체게시판',
@@ -74,6 +81,7 @@ export enum CategoryName {
   JOB_INFO_SHARE = '취업정보공유',
   PROJECT_HIRING_SHARE = '프로젝트구인',
 }
+
 // 카테고리 정보
 export interface Category {
   id: ECategoryId;
