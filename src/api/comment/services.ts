@@ -1,18 +1,20 @@
+// src/api/comment/services.ts
+
 import { apiClient } from '@/api/apiclient';
 import type {
-  CommentListResponse,
+  CommentListResponseDTO,
+  CommentDTO,
   CreateCommentRequest,
   UpdateCommentRequest,
-  Comment,
-} from '@/types/api';
+} from '@/api/comment/model/commentDTO';
 
 const BASE_PATH = '/api/v1/posts';
 
 export const commentService = {
   // 댓글 목록 조회
   getComments(postId: number, page = 1, pageSize = 100) {
-    return apiClient.get<CommentListResponse>(
-      `${BASE_PATH}/${postId}/comments`,
+    return apiClient.get<CommentListResponseDTO>(
+      `${BASE_PATH}/${postId}/comments/`,
       {
         params: { page, page_size: pageSize },
       }
@@ -21,13 +23,13 @@ export const commentService = {
 
   // 댓글 생성
   createComment(postId: number, data: CreateCommentRequest) {
-    return apiClient.post<Comment>(`${BASE_PATH}/${postId}/comments`, data);
+    return apiClient.post<CommentDTO>(`${BASE_PATH}/${postId}/comments/`, data);
   },
 
   // 댓글 수정
   updateComment(postId: number, commentId: number, data: UpdateCommentRequest) {
-    return apiClient.put<Comment>(
-      `${BASE_PATH}/${postId}/comments/${commentId}`,
+    return apiClient.put<CommentDTO>(
+      `${BASE_PATH}/${postId}/comments/${commentId}/`,
       data
     );
   },
@@ -35,7 +37,7 @@ export const commentService = {
   // 댓글 삭제
   deleteComment(postId: number, commentId: number) {
     return apiClient.delete<{ detail: string }>(
-      `${BASE_PATH}/${postId}/comments/${commentId}`
+      `${BASE_PATH}/${postId}/comments/${commentId}/`
     );
   },
 };
