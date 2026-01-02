@@ -7,8 +7,8 @@ export {
   type Post,
   type Author,
   type Category,
-  type CategoryName,
-  type CategoryId,
+  CategoryName as CategoryNameEnum,
+  type ECategoryId as CategoryId,
   type SortOption,
   type SearchFilterEnum,
-} from '@/api/communityPageTypes';
+} from '@/types/communityPageTypes';
