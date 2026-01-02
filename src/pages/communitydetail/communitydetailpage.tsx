@@ -137,10 +137,9 @@ function CommunityDetailPage() {
       views: 60,
       likes: 2,
       createdAt: '15시간 전',
-      comments:
-        convertedComments.length > 0 ? convertedComments : dummyComments,
+      comments: convertedComments,
     }),
-    [id, convertedComments, dummyComments]
+    [id, convertedComments]
   );
 
   // 초기 댓글 페이지 설정
