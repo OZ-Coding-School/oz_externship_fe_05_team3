@@ -7,6 +7,7 @@ export const ROUTES = {
   QUESTION: '/question',
   LOGIN: '/login',
   SIGNUP: '/signup',
+  BUILD_SH: '/build.sh',
 } as const;
 
 // 동적 경로 생성 헬퍼 함수
