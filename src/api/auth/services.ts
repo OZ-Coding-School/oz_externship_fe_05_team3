@@ -8,13 +8,13 @@ export const authService = {
     email,
     password,
   }: LoginRequestDTO): Promise<LoginResponseDTO> => {
-    const response = await apiClient.post<LoginResponseDTO>('/auth/login', {
+    const response = await apiClient.post<LoginResponseDTO>('/accounts/login', {
       email,
       password,
     });
 
     useAuthStore.getState().login(response.access_token);
-
+    console.log('로그인 성공:', response);
     return response;
   },
   // 유저정보 가져오기 서비스
