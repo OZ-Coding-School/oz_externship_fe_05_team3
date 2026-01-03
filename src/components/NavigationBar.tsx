@@ -17,8 +17,8 @@ const NavigationBar = () => {
       <section className="mx-auto flex h-[64px] w-full max-w-[1200px] items-center justify-center bg-white">
         <div className="flex w-full items-center justify-between px-4">
           <div className="flex flex-row items-center justify-between gap-10">
-            <Link
-              to={ROUTES.COMMUNITY}
+            <a
+              href={import.meta.env.VITE_API_MY_URL}
               className="flex items-center justify-center font-black"
             >
               <div className="flex items-center justify-center">
@@ -28,13 +28,16 @@ const NavigationBar = () => {
                   오즈코딩스쿨
                 </p>
               </div>
-            </Link>
-            <Link to={ROUTES.COMMUNITY} className="text-[18px]">
+            </a>
+            <a
+              href={import.meta.env.VITE_API_COMMUNITY_URL}
+              className="text-[18px]"
+            >
               커뮤니티
-            </Link>
-            <Link to={ROUTES.QUESTION} className="text-[18px]">
+            </a>
+            <a href={import.meta.env.VITE_API_QNA_URL} className="text-[18px]">
               질의응답
-            </Link>
+            </a>
           </div>
           <div className="flex items-center justify-end gap-2">
             <div className="text-oz-gray-dark flex items-center justify-center gap-2">
@@ -48,19 +51,19 @@ const NavigationBar = () => {
                 </Link>
               ) : (
                 <span className="text-oz-gray-dark flex items-center justify-center gap-2 text-[16px]">
-                  <Link
-                    to={ROUTES.LOGIN}
+                  <a
+                    href={`${import.meta.env.VITE_API_MY_URL}${ROUTES.LOGIN}`}
                     className="content-center text-[16px]"
                   >
                     로그인
-                  </Link>
+                  </a>
                   <p className="text-[16px]">|</p>
-                  <Link
-                    to={ROUTES.SIGNUP}
+                  <a
+                    href={`${import.meta.env.VITE_API_MY_URL}${ROUTES.SIGNUP}`}
                     className="content-center text-[16px]"
                   >
                     회원가입
-                  </Link>
+                  </a>
                 </span>
               )}
             </div>

@@ -35,6 +35,7 @@ const SearchFilter = () => {
   return (
     <div className="text-oz-gray-dark flex w-[140px] items-center justify-center">
       <NativeSelect
+        aria-label="검색 유형 선택"
         value={filterState || ''}
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
           handleChangeSearchFilter(event.target.value)

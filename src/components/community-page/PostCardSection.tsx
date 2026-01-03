@@ -8,12 +8,12 @@ import {
   cn,
 } from '@/lib/index';
 import { ThumbsUp } from 'lucide-react';
-import { formatRelativeDate } from '@/utils/index';
+import { formatRelativeDate, getCategoryNameById } from '@/utils/index';
 import type { Post } from '@/types/index';
 import { useAuthStore } from '@/store';
 import { useCommunityPageData } from '@/hooks/index';
 import { Link } from 'react-router';
-import { ROUTES } from '@/routes';
+import { getRoutes } from '@/routes';
 
 interface PostCardProps {
   postcard: Post;
@@ -26,6 +26,7 @@ const PostCard = ({ postcard }: PostCardProps) => {
     id,
     author,
     category,
+    category_id,
     title,
     content_preview,
     thumbnail_img_url,
@@ -34,6 +35,9 @@ const PostCard = ({ postcard }: PostCardProps) => {
     comment_count,
     view_count,
   } = postcard;
+
+  // API가 category를 반환하지 않으므로 category_id로부터 계산
+  const displayCategory = category || getCategoryNameById(category_id);
 
   const [isLiked, setIsLiked] = useState(false);
   const [currentLikeCount, setCurrentLikeCount] = useState(like_count);
@@ -83,7 +87,7 @@ const PostCard = ({ postcard }: PostCardProps) => {
           <div className="flex h-full flex-1 flex-col justify-between">
             <div className="flex flex-col gap-2">
               <CardDescription className="text-oz-gray-dark text-[12px]">
-                {category}
+                {displayCategory}
               </CardDescription>
               <CardTitle className="line-clamp-2 text-[18px]">
                 {title}
@@ -169,7 +173,7 @@ const PostCardSection = () => {
     <>
       {posts.map((post: Post) => (
         <Link
-          to={`${ROUTES.COMMUNITY}/${post.id}`}
+          to={getRoutes.communityDetail(post.id)}
           key={post.id}
           className="flex w-full justify-center"
         >

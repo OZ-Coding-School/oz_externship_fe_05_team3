@@ -22,6 +22,21 @@ export function getCategoryIdByName(categoryName: CategoryName): CategoryId {
   return categoryIdMap[categoryName];
 }
 
+// 카테고리 ID -> 이름 매핑
+export function getCategoryNameById(categoryId: ECategoryId): CategoryName {
+  const categoryNameMap: Record<ECategoryId, CategoryName> = {
+    [ECategoryId.ALL_BOARD]: CategoryName.ALL_BOARD,
+    [ECategoryId.NOTICE_BOARD]: CategoryName.NOTICE_BOARD,
+    [ECategoryId.FREE_BOARD]: CategoryName.FREE_BOARD,
+    [ECategoryId.DAILY_SHARE]: CategoryName.DAILY_SHARE,
+    [ECategoryId.DEVELOPMENT_KNOWLEDGE_SHARE]:
+      CategoryName.DEVELOPMENT_KNOWLEDGE_SHARE,
+    [ECategoryId.JOB_INFO_SHARE]: CategoryName.JOB_INFO_SHARE,
+    [ECategoryId.PROJECT_HIRING_SHARE]: CategoryName.PROJECT_HIRING_SHARE,
+  };
+  return categoryNameMap[categoryId] || CategoryName.ALL_BOARD;
+}
+
 // 카테고리별 필터링 (순수 함수)
 export function filterByCategory(posts: Post[], categoryId?: number): Post[] {
   if (!categoryId || categoryId === 0) {

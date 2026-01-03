@@ -1,5 +1,6 @@
 export {
   getCategoryIdByName,
+  getCategoryNameById,
   filterByCategory,
   filterBySearch,
   sortPosts,

@@ -14,6 +14,6 @@ export const ROUTES = {
 
 // 동적 경로 생성 헬퍼 함수
 export const getRoutes = {
-  communityDetail: (id: string | number) => `/community/${id}`,
-  communityEdit: (id: string | number) => `/community/edit/${id}`,
+  communityDetail: (id: string | number) => `/${id}`,
+  communityEdit: (id: string | number) => `/edit/${id}`,
 };

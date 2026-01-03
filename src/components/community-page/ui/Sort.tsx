@@ -33,6 +33,7 @@ const Sort = () => {
   return (
     <div className="text-oz-gray-dark flex w-[120px] items-center justify-center text-[16px]">
       <NativeSelect
+        aria-label="게시글 정렬 기준 선택"
         value={sortState}
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
           handleChangeSort(event.target.value)
