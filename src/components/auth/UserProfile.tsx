@@ -1,15 +1,12 @@
-import { useAuthStore } from '@/store/authStore';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Button } from '../ui/button';
-import { useMutation } from '@tanstack/react-query';
-import { authMutations } from '@/api/auth/queries';
+import { useLogin } from '@/hooks/useLogIn';
 
 const UserProfile = () => {
-  const { user } = useAuthStore();
-  const { mutate } = useMutation(authMutations.login);
+  const { login } = useLogin();
 
   const handleLogin = () => {
-    mutate({
+    login({
       email: 'testuser8@ozcodingschool.site',
       password: 'Ozcoding1234@',
     });

@@ -16,9 +16,10 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useTextEditor } from '@/hooks/tiptap';
+import { ROUTES } from '@/routes';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 type Mode = 'create' | 'edit';
 
@@ -26,6 +27,7 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
   // 수정일 때만 게시글 조회
   const { id } = useParams<{ id: string }>();
   const isEdit = mode === 'edit';
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
   const [categoryId, setCategoryId] = useState<number | null>(null);
@@ -47,17 +49,48 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
   );
 
   // 게시글 생성
-  const { mutate: createPost, isPending } = useMutation(
+  const { mutate: createPost } = useMutation(
     communityMutations.postCommunityCreate
   );
-  const handleSubmit = () => {
-    createPost({
-      title,
-      content,
-      category: categoryId!,
-    });
-  };
 
+  const { mutate: updatePost } = useMutation(
+    communityMutations.updateCommunityPost
+  );
+  const handleSubmit = () => {
+    if (!categoryId) return;
+    if (isEdit && id) {
+      updatePost(
+        {
+          id: Number(id),
+          data: {
+            title,
+            content,
+            category: categoryId!,
+          },
+        },
+        {
+          onSuccess: () => {
+            // 성공 시 처리 로직
+            navigate(ROUTES.COMMUNITY);
+          },
+        }
+      );
+    } else {
+      createPost(
+        {
+          title,
+          content,
+          category: categoryId!,
+        },
+        {
+          onSuccess: () => {
+            // 성공 시 처리 로직
+            navigate(ROUTES.COMMUNITY);
+          },
+        }
+      );
+    }
+  };
   useEffect(() => {
     if (!postDetail || !editor) return;
 
@@ -111,5 +144,4 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
     </div>
   );
 }
-
 export default CommunityCreatePage;

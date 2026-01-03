@@ -6,7 +6,7 @@ interface AuthStore {
   user: UserResponseDTO | null;
   access_token: string | null;
   isAuthenticated: boolean;
-  login: (accessToken: string) => void;
+  setToken: (accessToken: string) => void;
   logout: () => void;
   setUser: (user: UserResponseDTO | null) => void;
 }
@@ -17,7 +17,7 @@ export const useAuthStore = create<AuthStore>()(
       user: null,
       isAuthenticated: false,
       access_token: null,
-      login: (access_token) => set({ isAuthenticated: true, access_token }),
+      setToken: (access_token) => set({ isAuthenticated: true, access_token }),
       logout: () =>
         set({ user: null, isAuthenticated: false, access_token: null }),
       setUser: (user) => set({ user }),

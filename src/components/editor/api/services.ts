@@ -29,4 +29,14 @@ export const communityService = {
     );
     return response;
   },
+  patchCommunityPost: async (
+    id: number,
+    data: CreateCommunityRequestDTO
+  ): Promise<CreateCommunityResponseDTO> => {
+    const response = await apiClient.put<CreateCommunityResponseDTO>(
+      `/posts/${id}`,
+      data
+    );
+    return response;
+  },
 };
