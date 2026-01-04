@@ -1,8 +1,6 @@
 import { Link } from 'react-router';
 import { useAuthStore } from '@/store';
 import { ROUTES } from '@/routes';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import UserProfile from '../auth/UserProfile';
 
 export const NavigationBar = () => {
   const { user } = useAuthStore();
@@ -10,8 +8,8 @@ export const NavigationBar = () => {
 
   return (
     <nav className="sticky top-0 z-50">
-      <section className="bg-oz-gray-black-dark flex w-full items-center justify-center py-1">
-        <p className="text-md font-light text-white">
+      <section className="bg-oz-gray-black-dark flex h-[48px] w-full items-center justify-center">
+        <p className="text-[16px] font-light text-white">
           🚨 선착순 모집! 국비지원 받고 4주 완성
         </p>
       </section>
@@ -37,10 +35,14 @@ export const NavigationBar = () => {
           <div className="flex items-center justify-end gap-2">
             <div className="text-oz-gray-dark flex items-center justify-center gap-2">
               {isAuthenticated ? (
-                // <Link to="/profile">
-                <UserProfile />
+                <Link to="/profile">
+                  <img
+                    src={user?.profile_img_url ?? '/src/assets/user.png'}
+                    alt="user-icon"
+                    className="size-[40px] rounded-full"
+                  />
+                </Link>
               ) : (
-                // </Link>
                 <span className="text-oz-gray-dark flex items-center justify-center gap-2 text-[16px]">
                   <Link
                     to={ROUTES.LOGIN}

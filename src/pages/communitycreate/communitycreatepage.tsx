@@ -1,7 +1,4 @@
-import {
-  communityMutations,
-  communityQueries,
-} from '@/components/editor/api/queries';
+import { communityQueries } from '@/components/editor/api/queries';
 import EditorHeader from '@/components/editor/ui/EditorHeader';
 import TipTap from '@/components/editor/ui/TipTap';
 import ToolBar from '@/components/editor/ui/ToolBarBtn';
@@ -16,10 +13,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useTextEditor } from '@/hooks/tiptap';
-import { ROUTES } from '@/routes';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 type Mode = 'create' | 'edit';
 
@@ -27,12 +23,11 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
   // 수정일 때만 게시글 조회
   const { id } = useParams<{ id: string }>();
   const isEdit = mode === 'edit';
-  const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
   const [categoryId, setCategoryId] = useState<number | null>(null);
   const [content, setContent] = useState('');
-
+  console.log(content);
   // 카테고리 목록 조회
   const { data: categories } = useQuery(communityQueries.getCategories());
   const categoriesList = categories?.results ?? [];
@@ -48,49 +43,6 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
     communityQueries.getCommunityDetail({ id: Number(id), enabled: isEdit })
   );
 
-  // 게시글 생성
-  const { mutate: createPost } = useMutation(
-    communityMutations.postCommunityCreate
-  );
-
-  const { mutate: updatePost } = useMutation(
-    communityMutations.updateCommunityPost
-  );
-  const handleSubmit = () => {
-    if (!categoryId) return;
-    if (isEdit && id) {
-      updatePost(
-        {
-          id: Number(id),
-          data: {
-            title,
-            content,
-            category: categoryId!,
-          },
-        },
-        {
-          onSuccess: () => {
-            // 성공 시 처리 로직
-            navigate(ROUTES.COMMUNITY);
-          },
-        }
-      );
-    } else {
-      createPost(
-        {
-          title,
-          content,
-          category: categoryId!,
-        },
-        {
-          onSuccess: () => {
-            // 성공 시 처리 로직
-            navigate(ROUTES.COMMUNITY);
-          },
-        }
-      );
-    }
-  };
   useEffect(() => {
     if (!postDetail || !editor) return;
 
@@ -137,11 +89,10 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
           <ToolBar editor={editor} />
           <TipTap editor={editor} />
         </div>
-        <Button onClick={handleSubmit} className="ml-auto">
-          {isEdit ? '수정하기' : '등록하기'}
-        </Button>
+        <Button className="ml-auto">{isEdit ? '수정하기' : '등록하기'}</Button>
       </div>
     </div>
   );
 }
+
 export default CommunityCreatePage;
