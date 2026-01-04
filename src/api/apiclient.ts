@@ -1,4 +1,5 @@
 // src/api/apiClient.ts
+import { useAuthStore } from '@/store/authStore';
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
@@ -8,6 +9,20 @@ export const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
 });
+
+// 공통 요청 처리
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const { access_token } = useAuthStore.getState();
+
+    if (access_token) {
+      config.headers.Authorization = `Bearer ${access_token}`;
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 // 공통 응답 처리
 axiosInstance.interceptors.response.use(

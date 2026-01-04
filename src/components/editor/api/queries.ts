@@ -1,5 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 import { communityService } from './services';
+import type { CreateCommunityRequestDTO } from './dto';
 
 export const communityQueries = {
   getCategories: () =>
@@ -19,4 +20,19 @@ export const communityQueries = {
       },
       enabled: Boolean(params.id) && params.enabled !== false,
     }),
+};
+
+export const communityMutations = {
+  postCommunityCreate: {
+    mutationFn: communityService.postCommunityPost,
+  },
+  updateCommunityPost: {
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: number;
+      data: CreateCommunityRequestDTO;
+    }) => communityService.patchCommunityPost(id, data),
+  },
 };
