@@ -1,9 +1,9 @@
 export const ROUTES = {
   HOME: '/',
-  COMMUNITY: '/community',
-  COMMUNITY_DETAIL: '/community/:id',
-  COMMUNITY_CREATE: '/community/create',
-  COMMUNITY_EDIT: '/community/edit/:id',
+  COMMUNITY: '/',
+  COMMUNITY_DETAIL: '/:id',
+  COMMUNITY_CREATE: '/create',
+  COMMUNITY_EDIT: '/edit/:id',
   POSTS: '/posts',
   CATEGORIES: '/categories',
   QUESTION: '/question',
