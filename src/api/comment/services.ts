@@ -6,7 +6,7 @@ import type {
   CommentDTO,
   CreateCommentRequest,
   UpdateCommentRequest,
-} from '@/api/comment/model/commentDTO';
+} from '@/api/model/commentDTO';
 
 const BASE_PATH = '/api/v1/posts';
 

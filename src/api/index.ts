@@ -1,6 +1,6 @@
-export { default as apiClient } from '@api/apiclient';
+export { apiClient } from '@api/apiclient';
 export { default as queryClient } from '@api/queryClient';
-export { default as communityPostsApi } from '@/api/communityPostsApi';
+export { communityPostsApi } from '@/api/post/services';
 
 export {
   type PostQueryParams,

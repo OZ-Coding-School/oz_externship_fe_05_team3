@@ -57,6 +57,12 @@ export const apiClient = {
     config?: Omit<AxiosRequestConfig, 'url' | 'data'>
   ) => axiosInstance.put<T>(url, data, config).then((res) => res.data),
 
+  patch: <T>(
+    url: string,
+    data?: unknown,
+    config?: Omit<AxiosRequestConfig, 'url' | 'data'>
+  ) => axiosInstance.put<T>(url, data, config).then((res) => res.data),
+
   delete: <T>(url: string, config?: Omit<AxiosRequestConfig, 'url'>) =>
     axiosInstance.delete<T>(url, config).then((res) => res.data),
 } as const;
