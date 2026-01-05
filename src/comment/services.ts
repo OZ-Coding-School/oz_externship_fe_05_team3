@@ -17,7 +17,7 @@ const commentService = {
 
   createComment(postId: number, data: CreateCommentRequest) {
     return apiClient
-      .post<{ detail: string }>(`/posts/${postId}/comments`, data)
+      .post<{ data: { detail: string } }>(`/posts/${postId}/comments`, data)
       .then((res) => res.data);
   },
 
@@ -29,7 +29,9 @@ const commentService = {
 
   deleteComment(postId: number, commentId: number) {
     return apiClient
-      .delete<{ detail: string }>(`/posts/${postId}/comments/${commentId}`)
+      .delete<{
+        data: { detail: string };
+      }>(`/posts/${postId}/comments/${commentId}`)
       .then((res) => res.data);
   },
 };

@@ -2,13 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import {
-  Button,
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  InputGroupCustom,
-} from '@/lib/index';
+import { Button, Avatar, AvatarFallback, AvatarImage } from '@/lib/index';
 import { ThumbsUp } from 'lucide-react';
 
 import { CommentForm } from '@/components/CommunityDetailPage/CommentForm/CommentForm';
@@ -97,35 +91,35 @@ function CommunityDetailPage() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   // 테스트용 더미 댓글 50개
-  const dummyComments: Comment[] = useMemo(
-    () =>
-      Array.from({ length: 50 }, (_, i) => ({
-        id: i + 1,
-        author: {
-          nickname: ['안지선', '김소원', '나원국'][i % 3],
-          profileImageUrl: '',
-        },
-        content: [
-          '정말 좋은 글이네요! 저도 함께하고 싶어요 👍',
-          '러닝 메이트 구하시는군요. 언제 시작하시나요?',
-          '좋은 취지네요! 응원합니다 🔥',
-          '저도 관심 있어요! 연락 주세요',
-          '멋진 프로젝트네요. 화이팅!',
-          '같이 하면 좋을 것 같아요',
-          '좋은 기회인 것 같네요 ㅎㅎ',
-          '저도 참여하고 싶습니다!',
-          '언제 어디서 모이나요?',
-          '궁금한게 있는데 DM 가능할까요?',
-          '이런 모임 기다렸어요!',
-          '주말에 시간 되시나요?',
-          '저도 러닝 시작하려던 참이었어요',
-          '함께하면 더 재밌을 것 같네요!',
-          '정보 공유 감사합니다 🙏',
-        ][i % 15],
-        createdAt: `${i + 1}시간 전`,
-      })),
-    []
-  );
+  // const dummyComments: Comment[] = useMemo(
+  //   () =>
+  //     Array.from({ length: 50 }, (_, i) => ({
+  //       id: i + 1,
+  //       author: {
+  //         nickname: ['안지선', '김소원', '나원국'][i % 3],
+  //         profileImageUrl: '',
+  //       },
+  //       content: [
+  //         '정말 좋은 글이네요! 저도 함께하고 싶어요 👍',
+  //         '러닝 메이트 구하시는군요. 언제 시작하시나요?',
+  //         '좋은 취지네요! 응원합니다 🔥',
+  //         '저도 관심 있어요! 연락 주세요',
+  //         '멋진 프로젝트네요. 화이팅!',
+  //         '같이 하면 좋을 것 같아요',
+  //         '좋은 기회인 것 같네요 ㅎㅎ',
+  //         '저도 참여하고 싶습니다!',
+  //         '언제 어디서 모이나요?',
+  //         '궁금한게 있는데 DM 가능할까요?',
+  //         '이런 모임 기다렸어요!',
+  //         '주말에 시간 되시나요?',
+  //         '저도 러닝 시작하려던 참이었어요',
+  //         '함께하면 더 재밌을 것 같네요!',
+  //         '정보 공유 감사합니다 🙏',
+  //       ][i % 15],
+  //       createdAt: `${i + 1}시간 전`,
+  //     })),
+  //   []
+  // );
 
   // post 객체 생성
   const post: Post = useMemo(
@@ -174,12 +168,9 @@ function CommunityDetailPage() {
 
   const handleLikePost = () => {
     if (variant === 'guest') return;
-    console.log('좋아요');
   };
 
-  const handleSharePost = () => {
-    console.log('공유하기');
-  };
+  const handleSharePost = () => {};
 
   const handleSubmitComment = (content: string) => {
     if (variant === 'guest') return;

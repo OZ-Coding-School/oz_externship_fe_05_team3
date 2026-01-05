@@ -1,10 +1,9 @@
-import apiClient from './apiclient';
-
 import { ROUTES } from '@/routes';
 import type { PostListResponse, PostQueryParams } from './types';
+import { apiClient } from '../apiclient';
 
 // 빈 값 제거 헬퍼 함수
-const cleanParams = (params: PostQueryParams) => {
+export const cleanParams = (params: PostQueryParams) => {
   const cleaned: Record<string, string | number> = {};
 
   Object.entries(params || {}).forEach(([key, value]) => {
@@ -17,13 +16,13 @@ const cleanParams = (params: PostQueryParams) => {
   return cleaned;
 };
 
-const communityPostsApi = {
+export const communityPostsApi = {
   getCommunityPosts: async (
     params: PostQueryParams = {}
   ): Promise<PostListResponse> => {
     const response = await apiClient.get<PostListResponse>(ROUTES.POSTS, {
       params: cleanParams(params),
     });
-    return response.data;
+    return response;
   },
 };

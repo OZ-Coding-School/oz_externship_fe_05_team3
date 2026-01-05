@@ -1,6 +1,6 @@
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Button } from '../ui/button';
-import { useLogin } from '@/hooks/useLogIn';
+import { useLogin } from '@/hooks/useLogin';
 
 const UserProfile = () => {
   const { login } = useLogin();

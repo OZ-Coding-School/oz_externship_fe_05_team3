@@ -1,6 +1,3 @@
-// src/mocks/handlers.ts
-import { http, HttpResponse } from 'msw';
-
 export const handlers = [
   // ✅ 여기에는 기존에 쓰던 다른 목 핸들러들이 올 수 있음.
   // 예: 로그인, 회원가입, 다른 도메인 API 등

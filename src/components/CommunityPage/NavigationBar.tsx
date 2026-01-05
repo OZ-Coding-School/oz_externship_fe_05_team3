@@ -1,11 +1,11 @@
 import { Link } from 'react-router';
-import { useAuthStore } from '@/store';
+// import { useAuthStore } from '@/store';
 import { ROUTES } from '@/routes';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+// import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import UserProfile from '../auth/UserProfile';
 
 export const NavigationBar = () => {
-  const { user } = useAuthStore();
+  // const { user } = useAuthStore();
   const isAuthenticated = true;
 
   return (

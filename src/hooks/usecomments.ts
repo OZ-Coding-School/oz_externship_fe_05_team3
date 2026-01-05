@@ -1,1 +1,1 @@
-export { useComments } from '@/hooks/comment/queries';
+export { default as useComments } from '@/hooks/comment/queries';
