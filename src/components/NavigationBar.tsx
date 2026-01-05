@@ -31,11 +31,14 @@ const NavigationBar = () => {
             </a>
             <a
               href={import.meta.env.VITE_API_COMMUNITY_URL}
-              className="text-[18px]"
+              className="cursor-pointer text-[18px]"
             >
               커뮤니티
             </a>
-            <a href={import.meta.env.VITE_API_QNA_URL} className="text-[18px]">
+            <a
+              href={import.meta.env.VITE_API_QNA_URL}
+              className="cursor-pointer text-[18px]"
+            >
               질의응답
             </a>
           </div>
