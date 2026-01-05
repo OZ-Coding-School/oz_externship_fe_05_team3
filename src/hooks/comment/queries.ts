@@ -2,7 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { commentService } from '@/api/comment/services';
 import type { CreateCommentRequest, UpdateCommentRequest } from '@/types/api';
 
-export const useComments = (postId: number) => {
+const useComments = (postId: number) => {
   const queryClient = useQueryClient();
 
   const commentsQuery = useQuery({
@@ -40,6 +40,7 @@ export const useComments = (postId: number) => {
   });
 
   return {
+    commentsQuery, // --------------------------------> 이것 하나 추가했습니다! 이상없는지 확인부탁드려요! ^ㅁ^
     comments: commentsQuery.data?.results || [],
     commentsCount: commentsQuery.data?.count || 0,
     isLoading: commentsQuery.isLoading,
@@ -52,3 +53,5 @@ export const useComments = (postId: number) => {
     isDeleting: deleteMutation.isPending,
   };
 };
+
+export default useComments;

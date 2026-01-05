@@ -144,4 +144,5 @@ function CommunityCreatePage({ mode }: { mode: Mode }) {
     </div>
   );
 }
+
 export default CommunityCreatePage;

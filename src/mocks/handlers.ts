@@ -12,6 +12,9 @@ export const handlers = [
   // 댓글 관련 핸들러 (현재 비활성화)
   // ============================
   /*
+
+
+
   // 댓글 수정
   http.put(
     '/api/v1/posts/:postId/comments/:commentId',
@@ -39,3 +42,5 @@ export const handlers = [
   }),
   */
 ];
+
+export default handlers;

@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils';
 
 const loadingVariants = cva(
   'animate-spin rounded-full border-solid border-t-transparent border-oz-purple',
@@ -17,7 +17,7 @@ const loadingVariants = cva(
       size: 'md',
     },
   }
-)
+);
 
 function Loading({
   className,
@@ -30,7 +30,7 @@ function Loading({
       className={cn(loadingVariants({ size }), className)}
       {...props}
     />
-  )
+  );
 }
 
-export { Loading, loadingVariants }
+export { Loading, loadingVariants };

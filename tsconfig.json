@@ -5,11 +5,11 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "strict": false,
+    "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "common/*": ["src/components/ui/*"]
+      "@/*": ["src/*"]
+      // "common/*": ["src/components/ui/*"]
     }
   }
 }

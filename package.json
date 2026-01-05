@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
@@ -41,6 +42,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lowlight": "^3.3.0",
+    "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.515.0",
     "next-themes": "^0.4.6",
     "react": "^19.2.1",
@@ -72,6 +74,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "msw": "^2.12.4",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
@@ -84,6 +88,12 @@
   "msw": {
     "workerDirectory": [
       "public"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   }
 }
